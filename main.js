@@ -69,7 +69,7 @@ function toDom() {
 }
 toDom();
 
-
+//Change border of card selected and gain focus on input field
 
 $(".person__container").click(function() {
     $(this).siblings().removeClass("clicked");
@@ -78,15 +78,22 @@ $(".person__container").click(function() {
     $(this).addClass("clicked");
     $("#userInput").focus(); //added #id from input field cursor only goes to input field if a card is selected
 
-    editBio();
+    // editBio();
 });
 
+// Replace bio text with user input text
 
-function editBio() {
-    $("#userInput").keyup(function() {
-        $("thisBio").text($(this).val());
-    });
-}
+$("#userInput").change(function() {
+    $("bio").value($(this).val());
+});
+
+///////////////////////////
+
+// function editBio() {
+//     $("#userInput").keyup(function() {
+//         $("thisBio").text($(this).val());
+//     });
+// }
 
 
 
