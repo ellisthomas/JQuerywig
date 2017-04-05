@@ -1,1 +1,1 @@
-# JQuerywig
+# WYSIWYG JQuery
