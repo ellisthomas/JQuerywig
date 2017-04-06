@@ -89,11 +89,6 @@ $("#userInput").change(function() {
 
 ///////////////////////////
 
-// function editBio() {
-//     $("#userInput").keyup(function() {
-//         $("thisBio").text($(this).val());
-//     });
-// }
 
 
 
