@@ -1,11 +1,3 @@
-var outputEl = document.getElementById("outputEl");
-var userInput = document.getElementById("userInput");
-// var output = document.getElementById("output");
-var containerEl = document.getElementsByClassName("person__container");
-var outputBioEdit = document.getElementById("userEditText");
-var clicked;
-
-
 var people = [{
     name: "Michael Jordan",
     title: "Air Jordan",
