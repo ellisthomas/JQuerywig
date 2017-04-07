@@ -1,8 +1,16 @@
+var outputEl = document.getElementById("outputEl");
+var userInput = document.getElementById("userInput");
+// var output = document.getElementById("output");
+var containerEl = document.getElementsByClassName("person__container");
+var outputBioEdit = document.getElementById("userEditText");
+var clicked;
+
+
 var people = [{
     name: "Michael Jordan",
     title: "Air Jordan",
     bio: "Michael Jeffrey Jordan, also known by his initials, MJ, is an American retired professional basketball player, businessman, and principal owner and chairman of the Charlotte Hornets. Jordan played 15 seasons in the National Basketball Association (NBA) for the Chicago Bulls and Washington Wizards. His biography on the NBA website states: By acclamation, Michael Jordan is the greatest basketball player of all time. Jordan was one of the most effectively marketed athletes of his generation and was considered instrumental in popularizing the NBA around the world in the 1980s and 1990s.",
-    image: "http://www.famoussportspeople.com/wp-content/uploads/2016/04/michael-jordan-basketball-sport-wallpapers-hd-wallpapers-hd-celebrities-sports-photo-michael-jordan-wallpaper.jpg",
+    image: "https://s-media-cache-ak0.pinimg.com/236x/a1/a0/2f/a1a02f1b785609a7c3315c78128ec27d.jpg",
     lifespan: {
         birth: "February 17, 1963",
         death: "N/A",
@@ -39,35 +47,33 @@ var people = [{
     }
 }];
 
+function editBio(){
+    var clickedCard = $(".clicked").find("span").text();
+    console.log(clickedCard);
+    $("#userInput").val(clickedCard);
+}          
 
-var outputEl = document.getElementById("outputEl");
-var userInput = document.getElementById("userInput");
-var output = document.getElementById("output");
-var containerEl = document.getElementsByClassName("person__container");
-var clicked;
-
-
-function toDom() {
-    for (var i = 0; i < people.length; i++) {
-        // console.log(people[i]);
-
-        outputEl.innerHTML +=
-            `<div class="person__container" id="person--${i}">
-            <person>
-                <header class="child">
-                    <h2 class="grandChild"> ${people[i].title}</h2>
-                    <h3 calss="grandChild"> ${people[i].name}</h3>
-                </header>
-                <section class="child">
-                    <img class=" grandChild bioPic" src="${people[i].image}"><br>Bio: ${people[i].bio} </section>
-                <footer class="child">
-                    <p>Birth: ${people[i].lifespan.birth}<br>Death: ${people[i].lifespan.death}</p>
-                </footer>
-            </person>
-        </div>`;
+function copyText(event) {
+    if (event.keyCode !== 13) {
+        $(".clicked").find("span").text($("#userInput").val());
+    } else {
+        $("#userInput").blur();
+        $("#userInput").val("");
+        $(".clicked").removeClass("clicked");
     }
-}
-toDom();
+}    
+//////////////// JQuery write to DOM /////////////////////
+
+$.each (people, function (index,value) {
+    index += 1;
+    $("#outputEl").append(`<person class="card">`);
+    $(".card:nth-of-type(" + index + ")").append(`<header><h2>${value.title}<h2><h3>${value.name}</h3></header>`);
+    $(".card:nth-of-type(" + index + ")").append(`<section><span>${value.bio}</span><br><img class="bioPic" src=${value.image}></section>`);
+    $(".card:nth-of-type(" + index + ")").append(`<footer><h3>Born: ${value.lifespan.birth}<br>Died: ${value.lifespan.death}</h3></footer>`);
+});
+
+$("person").addClass("person__container");
+
 
 //Change border of card selected and gain focus on input field
 
@@ -76,23 +82,14 @@ $(".person__container").click(function() {
     $(this).siblings().addClass("unclicked");
 
     $(this).addClass("clicked");
-    $("#userInput").focus(); //added #id from input field cursor only goes to input field if a card is selected
+    $("#userInput").focus(); 
+    editBio();
+});    
 
-    // editBio();
+//Add user input to input field
+
+$("#userInput").keyup(function(event) {
+    copyText(event);
 });
-
-// Replace bio text with user input text
-
-$("#userInput").change(function() {
-    $("bio").value($(this).val());
-});
-
-///////////////////////////
-
-
-
-
-
-
 
 
