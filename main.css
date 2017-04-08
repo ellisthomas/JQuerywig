@@ -1,0 +1,40 @@
+body {
+	background-color: black;
+}
+.person__container {
+	display: inline-block;
+	border: 5px solid black;
+	width: 300px;
+	min-height: 550px;
+	margin: 25px;
+	text-align: justify;
+	vertical-align: top;
+}
+
+
+.person__container section {
+	min-height: 100px;
+}
+
+.bioPic {
+	width: 200px;
+	height: 200px;
+	margin: auto;
+}
+
+.person__container:nth-child(2n) {
+	background-color: lightyellow;
+}
+
+
+.person__container:nth-child(2n+1) {
+	background-color: #8385E6;
+}
+
+.clicked {
+	border: 5px dotted red;
+}
+
+.unclicked { // reset after <click> focus changes
+	border: 1px solid slategrey;
+}
